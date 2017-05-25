@@ -2,10 +2,7 @@ package br.ufrn.imd.ppgsw.ed.main;
 
 import java.io.IOException;
 
-import br.ufrn.imd.ppgsw.ed.sorter.BubbleSort;
-import br.ufrn.imd.ppgsw.ed.sorter.InsertSort;
-import br.ufrn.imd.ppgsw.ed.sorter.SelectionSort;
-import br.ufrn.imd.ppgsw.ed.sorter.ShellSort;
+import br.ufrn.imd.ppgsw.ed.sorter.*;
 
 public class Main {
 
@@ -15,10 +12,14 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		
 		for(int i = 1; i < 6; i++){
-			Worker.ordena(TAMANHO, REPETICOES, new ShellSort());
-			Worker.ordena(TAMANHO, REPETICOES, new BubbleSort());
-			Worker.ordena(TAMANHO, REPETICOES, new InsertSort());
-			Worker.ordena(TAMANHO, REPETICOES, new SelectionSort());
+			//Worker.ordena(TAMANHO, REPETICOES, new ShellSort());
+			//Worker.ordena(TAMANHO, REPETICOES, new BubbleSort());
+			//Worker.ordena(TAMANHO, REPETICOES, new InsertSort());
+			//Worker.ordena(TAMANHO, REPETICOES, new SelectionSort());
+			Worker.ordena(TAMANHO, REPETICOES, new HeapSort());
+			Worker.ordena(TAMANHO, REPETICOES, new QuickSort());
+			Worker.ordena(TAMANHO, REPETICOES, new MergeSort());
+
 			TAMANHO *= 10;
 		}
 	}
