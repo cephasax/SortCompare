@@ -17,8 +17,9 @@ public class Main {
 			//Worker.ordena(TAMANHO, REPETICOES, new InsertSort());
 			//Worker.ordena(TAMANHO, REPETICOES, new SelectionSort());
 			Worker.ordena(TAMANHO, REPETICOES, new HeapSort());
-			//Worker.ordena(TAMANHO, REPETICOES, new QuickSort());
-			//Worker.ordena(TAMANHO, REPETICOES, new MergeSort());
+			Worker.ordena(TAMANHO, REPETICOES, new QuickSort());
+			Worker.ordena(TAMANHO, REPETICOES, new MergeSort());
+			Worker.ordena(TAMANHO, REPETICOES, new RadixSort());
 
 			TAMANHO *= 10;
 		}
