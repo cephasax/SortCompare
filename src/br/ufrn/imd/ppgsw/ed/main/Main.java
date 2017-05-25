@@ -7,7 +7,7 @@ import br.ufrn.imd.ppgsw.ed.sorter.*;
 public class Main {
 
 	private static int TAMANHO = 100;
-	private static final int REPETICOES = 5;
+	private static final int REPETICOES = 10;
 	
 	public static void main(String[] args) throws IOException {
 		
