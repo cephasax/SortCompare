@@ -29,7 +29,10 @@ public class Worker {
 	
 	public static void ordena(int tamanhoDoVetor, int numeroExecucoes, Sorter sorter) throws IOException {
 
-		arquivo = new String("resources/" + sorter.getNome() + "_rep" + numeroExecucoes +".txt");
+		arquivo = new String("resources/" + sorter.getNome() 
+		+ "_rep" + numeroExecucoes 
+		+ "_tam" + tamanhoDoVetor
+		+".txt");
 		arq = new FileWriter(new File(arquivo));
 		gravarArq = new PrintWriter(arq);
 		Worker.sorter = sorter;
@@ -77,6 +80,6 @@ public class Worker {
 
 		PrintWriter gravarArq = new PrintWriter(arq);
 		gravarArq.printf("Media de tempo: " + media);
-		System.out.printf("Tempo médio gravado com sucesso \n\n");
+		System.out.printf("Tempo mï¿½dio gravado com sucesso \n\n");
 	}
 }
