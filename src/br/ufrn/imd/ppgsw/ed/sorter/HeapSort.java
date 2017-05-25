@@ -2,59 +2,75 @@ package br.ufrn.imd.ppgsw.ed.sorter;
 
 public class HeapSort extends Sorter {
 
-	public HeapSort(){
+	public HeapSort() {
 		this.nome = new String("HEAP_SORT");
 	}
-	
-	public void maxHeapify(int[] array, int currentId, int sizeOfHeap) {
-		// Left child
-		int left = 2 * currentId + 1;
-		// Right child
-		int right = 2 * currentId + 2;
-		int largest = currentId;
 
-		if (left < sizeOfHeap && array[left] > array[currentId]) {
-			largest = left;
+	private int A[];
+
+	private void swap(int i, int j) {
+		int temp = A[i];
+		A[i] = A[j];
+		A[j] = temp;
+	}
+
+	// To Max-Heapify a subtree rooted at node i which is
+	// an index in A[]. n -> size of heap
+	void maxHeapify(int A[], int n, int i) {
+		int largest = i; // Initialize largest as root
+		int l = 2 * i + 1; // left = 2*i + 1
+		int r = 2 * i + 2; // right = 2*i + 2
+
+		// If left child is larger than root
+		if (l < n && A[l] > A[largest]){
+			largest = l;
 		}
 
-		if (right < sizeOfHeap && array[right] > array[largest]) {
-			largest = right;
+		// If right child is larger than largest so far
+		if (r < n && A[r] > A[largest]){
+			largest = r;
 		}
-
-		if (largest != currentId) {
-			swap(array, currentId, largest);
-			maxHeapify(array, largest, currentId);
+		// If largest is not root
+		if (largest != i) {
+			swap(A,  i, largest);
+			// Recursively heapify the affected sub-tree
+			maxHeapify(A, n, largest);
 		}
 	}
 
-	public void constructMaxHeap(int[] array, int heapSize) {
-		
-		int lastElementId = array.length - 1;
-		int parentIndex = (lastElementId - 1) / 2;
-		for (int i = parentIndex; i >= 0; i--) {
-			maxHeapify(array, i, heapSize);
-		}
+	// Build-Max-Heap (rearrange array)
+	// Converting array A to Max-Heap
+	public void BuildMaxHeap(int A[]) {
+		int n = A.length;
+		// one by one checking all root nodes
+		// and calling Heapify function
+		// if they does not satisfy heap property
+		for (int i = n / 2 - 1; i >= 0; i--)
+			maxHeapify(A, n, i);
 	}
 
-	public void heapSort(int[] array) {
-		if (array == null || array.length < 2)
-			return;
+	// main function to do Heap Sort
+	public void heapSort(int arr[]) {
+		this.A = arr;
+		int n = A.length;
 
-		constructMaxHeap(array, array.length);
-		int heapSize = array.length;
-		for (int i = array.length - 1; i > 0; i--) {
-			swap(array, 0, i);
-			heapSize = heapSize - 1;
-			maxHeapify(array, 0, heapSize);
+		BuildMaxHeap(A);
+		// One by one extract an element from heap
+		// and get the sorted array
+		for (int i = n - 1; i >= 0; i--) {
+			// Move top root element to end element
+			swap(0, i);
+			// call max heapify on the reduced heap
+			maxHeapify(arr, i, 0);
 		}
 	}
 
 	@Override
 	public int[] sort(int[] dataToSort) {
-		int[] numeros = dataToSort;
-		heapSort(numeros);
-		return numeros;
-		
+		HeapSort hs = new HeapSort();
+		hs.heapSort(dataToSort);
+		return dataToSort;
+
 	}
 
 }
